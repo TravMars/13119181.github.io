@@ -19,6 +19,14 @@
             font-size: 18px;
             color: white;
         }
+        input {
+            width: 50%;
+            padding: 10px;
+            margin-bottom: 20px;
+            font-size: 18px;
+            border-radius: 5px;
+            border: none;
+        }
         ul {
             list-style: none;
             padding: 0;
@@ -50,7 +58,8 @@
     <div class="container">
         <h1>Welcome to My Gaming Site!</h1>
         <p>Click on a game to play:</p>
-        <ul>
+        <input type="text" id="search" onkeyup="searchGames()" placeholder="Search for a game...">
+        <ul id="gameList">
             <li><a href="1v1 LOL.htm">1v1 LOL</a></li>
             <li><a href="2048.htm">2048</a></li>
             <li><a href="BitLife.htm">BitLife</a></li>
@@ -84,6 +93,22 @@
             <li><a href="smash-karts.htm">Smash Karts</a></li>
         </ul>
     </div>
+
+    <script>
+        function searchGames() {
+            let input = document.getElementById("search").value.toLowerCase();
+            let gameList = document.getElementById("gameList").getElementsByTagName("li");
+
+            for (let i = 0; i < gameList.length; i++) {
+                let game = gameList[i].textContent.toLowerCase();
+                if (game.includes(input)) {
+                    gameList[i].style.display = "";
+                } else {
+                    gameList[i].style.display = "none";
+                }
+            }
+        }
+    </script>
 
 </body>
 </html>
